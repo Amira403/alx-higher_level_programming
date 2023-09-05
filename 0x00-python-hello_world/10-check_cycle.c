@@ -33,4 +33,4 @@ hare = hare->next->next;
 }
 
 return (0);
-
+}

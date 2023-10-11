@@ -1,29 +1,29 @@
 #!/usr/bin/python3
-"""Defines a class Rectangle that inherits from BaseGeometry."""
-BaseGeometry = __import__('7-base_geometry').BaseGeometry
+"""Module 9-student
+Creates a student file
+"""
 
 
-class Rectangle(BaseGeometry):
-    """Represent a rectangle using BaseGeometry."""
+class Student:
+    """Defines a student
+    Public sttributes:
+        - first_name
+        - last_name
+        - age
+    Public method to_json()
+    """
 
-    def __init__(self, width, height):
-        """Intialize a new Rectangle.
+    def __init__(self, first_name, last_name, age):
+        """Initializes the student instances"""
 
-        Args:
-            width (int): The width of the new Rectangle.
-            height (int): The height of the new Rectangle.
+        self.first_name = first_name
+        self.last_name = last_name
+        self.age = age
+
+    def to_json(self):
         """
-        super().integer_validator("width", width)
-        self.__width = width
-        super().integer_validator("height", height)
-        self.__height = height
+        Retrieves a dictionary representation of a student instance
+        Returns: the dict representation of the instance
+        """
 
-    def area(self):
-        """Return the area of the rectangle."""
-        return self.__width * self.__height
-
-    def __str__(self):
-        """Return the print() and str() representation of a Rectangle."""
-        string = "[" + str(self.__class__.__name__) + "] "
-        string += str(self.__width) + "/" + str(self.__height)
-        return string
+        return self.__dict__

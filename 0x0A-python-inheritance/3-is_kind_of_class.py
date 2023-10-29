@@ -1,13 +1,7 @@
 #!/usr/bin/python3
-"""
-===================================
-module with method is_kind_of_class
-===================================
-"""
+'''Module for is_kind_of_class method.'''
 
 
 def is_kind_of_class(obj, a_class):
-    """Method that return True if an object is an instance of a class
-    that inherited from"""
-
+    '''Determines if an object is a subclass of a class.'''
     return isinstance(obj, a_class)

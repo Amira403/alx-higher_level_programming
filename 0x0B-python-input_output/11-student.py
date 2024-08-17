@@ -1,48 +1,41 @@
 #!/usr/bin/python3
-"""
-Module 11-student
-Creates a student class
-"""
+"""Defines a class Student."""
 
 
 class Student:
-    """Class that defines a student.
-    Public attributes:
-        - first_name
-        - last_name
-        - age
-    Public method to_json().
-    Public method reload_from_json().
-    """
+    """Represent a student."""
 
     def __init__(self, first_name, last_name, age):
-        """Initializes the Student instance."""
+        """Initialize a new Student.
 
+        Args:
+            first_name (str): The first name of the student.
+            last_name (str): The last name of the student.
+            age (int): The age of the student.
+        """
         self.first_name = first_name
         self.last_name = last_name
         self.age = age
 
     def to_json(self, attrs=None):
-        """Retrieves a dictionary representation
-        of a Student instance.
-        Args:
-            - attrs: list of attributes
-        Returns: the dict representation of the instance.
-        """
+        """Get a dictionary representation of the Student.
 
-        my_dict = dict()
-        if attrs and all(isinstance(x, str) for x in attrs):
-            for x in attrs:
-                if x in self.__dict__:
-                    my_dict.update({x: self.__dict__[x]})
-            return my_dict
+        If attrs is a list of strings, represents only those attributes
+        included in the list.
+
+        Args:
+            attrs (list): (Optional) The attributes to represent.
+        """
+        if (type(attrs) == list and
+                all(type(ele) == str for ele in attrs)):
+            return {k: getattr(self, k) for k in attrs if hasattr(self, k)}
         return self.__dict__
 
     def reload_from_json(self, json):
-        """Replaces all attributes of the Student instance.
-        Args:
-            - json: dictionnary of attributes
-        """
+        """Replace all attributes of the Student.
 
-        for x in json:
-            self.__dict__.update({x: json[x]})
+        Args:
+            json (dict): The key/value pairs to replace attributes with.
+        """
+        for k, v in json.items():
+            setattr(self, k, v)
